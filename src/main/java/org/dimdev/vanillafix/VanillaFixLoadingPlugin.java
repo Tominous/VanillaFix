@@ -33,21 +33,21 @@ import java.util.Map;
 public class VanillaFixLoadingPlugin implements IFMLLoadingPlugin {
     private static final Logger log = LogManager.getLogger("VanillaFix");
     public static LoadingConfig config;
-    // private static final boolean deobfuscatedEnvironment = VanillaFixLoadingPlugin.class.getResource("/net/minecraft/world/World.class") != null;
+     private static final boolean deobfuscatedEnvironment = VanillaFixLoadingPlugin.class.getResource("/net/minecraft/world/World.class") != null;
 
     static {
         log.info("Initializing VanillaFix");
         config = new LoadingConfig(new File(Launch.minecraftHome, "config/vanillafix.cfg"));
         config.improvedLaunchWrapper = false; // TODO: fix this
 
-        // replaceLaunchWrapper();
+         replaceLaunchWrapper();
         trustIdenTrust();
         initStacktraceDeobfuscator();
         fixMixinClasspathOrder();
         initMixin();
     }
 
-    /*
+    
     private static void replaceLaunchWrapper() {
         if (!config.improvedLaunchWrapper) {
             log.info("LaunchWrapper replacement disabled by config");
@@ -132,7 +132,7 @@ public class VanillaFixLoadingPlugin implements IFMLLoadingPlugin {
 
         return command.toString();
     }
-    */
+    
 
     private static void trustIdenTrust() {
         // Trust the "IdenTrust DST Root CA X3" certificate (used by Let's Encrypt, which is used by paste.dimdev.org)
